@@ -25,11 +25,11 @@ function LoginPage(props) {
       <form>
         <span class="text-center">Login</span>
           <div class="input-container">
-            <input value={props.email} type="text" required="" onChange={(e) => {handleInputChange(e)}}/>
+            <input value={props.email} id="email" type="text" required="" onChange={(e) => {handleInputChange(e)}}/>
             <label>Email</label>
           </div>
           <div class="input-container">
-            <input value={props.password} type="mail" required="" onChange={(e) => {handleInputChange(e)}} />
+            <input value={props.password} id="password" type="mail" required="" onChange={(e) => {handleInputChange(e)}} />
             <label>Password</label>
           </div>
         <button onClick={()=> {handleSubmit()}} type="button" class="btn">
@@ -43,7 +43,7 @@ function LoginPage(props) {
 const mapStateToProps = (state) => {
   return {
     email: state.login.email,
-    password: state.login.password
+    password: state.login.password,
   };
 };
 

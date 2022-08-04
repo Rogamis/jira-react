@@ -1,5 +1,4 @@
 import axiosInstance from "../../axios";
-
 export const SET_EMAIL_LOGIN = "LOGIN::SET_EMAIL_LOGIN";
 export const SET_PASSWORD_LOGIN = "LOGIN::SET_PASSWORD_LOGIN";
 export const SET_TOKEN = "LOGIN::SET_TOKEN";
@@ -19,15 +18,11 @@ export const setToken = (token) => ({
     payload: token,
 });
 
-export const login = (callback, errorCallback) => async (dispatch, getState) => {
+export const login = () => async (dispatch, getState) => {
   try {
-    console.log("test")
-    const email = getState().auth.email;
-    const password = getState().auth.password;
 
-    if (!email || !password){
-        return
-    };
+    const email = getState().login.email;
+    const password = getState().login.password;
 
     const answer = await axiosInstance.post("/login", {
       email: email,
@@ -36,12 +31,8 @@ export const login = (callback, errorCallback) => async (dispatch, getState) => 
     console.log(answer.data)
     if (answer.data.access_token) {
       dispatch(setToken(answer.data.access_token));
-      callback();
     }
   } catch (e) {
     console.log("login", e.response.data);
-    if (errorCallback) {
-        errorCallback("Invalid login attempt")
-    }
   }
 };
