@@ -1,25 +1,56 @@
 import React from "react";
 import "../App.css";
+import { connect } from "react-redux";
+import { setEmailLogin, setPassword, login } from "../redux/actions/loginAction"
 
-function LoginPage() {
+function LoginPage(props) {
+  console.log(props);
+
+  const handleSubmit = () => {
+    props.login();
+  };
+
+  const handleInputChange = (e) => {
+        const {id , value} = e.target;
+        if(id === "email"){
+            props.setEmailLogin(value);
+        }
+        if(id === "password"){
+            props.setPassword(value);
+        }
+    }
+
   return (
     <div class="box">
       <form>
-        <span class="text-center">Registration</span>
-        <div class="input-container">
-          <input type="text" required="" />
-          <label>Email</label>
-        </div>
-        <div class="input-container">
-          <input type="mail" required="" />
-          <label>Password</label>
-        </div>
-        <button type="button" class="btn">
-          Registration
+        <span class="text-center">Login</span>
+          <div class="input-container">
+            <input value={props.email} type="text" required="" onChange={(e) => {handleInputChange(e)}}/>
+            <label>Email</label>
+          </div>
+          <div class="input-container">
+            <input value={props.password} type="mail" required="" onChange={(e) => {handleInputChange(e)}} />
+            <label>Password</label>
+          </div>
+        <button onClick={()=> {handleSubmit()}} type="button" class="btn">
+          WELCOME
         </button>
       </form>
     </div>
   );
 }
 
-export default LoginPage;
+const mapStateToProps = (state) => {
+  return {
+    email: state.login.email,
+    password: state.login.password
+  };
+};
+
+const mapDispatchToProps = {
+  setEmailLogin,
+  setPassword,
+  login,
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(LoginPage);

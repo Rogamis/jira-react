@@ -1,16 +1,18 @@
-import { SET_LOGIN_WITHOUT_AVATAR, SET_PASSWORD } from "../actions/logInAction";
+import { SET_EMAIL, SET_PASSWORD, SET_USER } from "../actions/registrationAction";
 
 const initialState = {
-  login: "",
+  email: "",
+  user: "",
   password: "",
 };
 
 const reducer = (state = initialState, action) => {
+  console.log(action)
   switch (action.type) {
-    case SET_LOGIN_WITHOUT_AVATAR:
+    case SET_EMAIL:
       return {
         ...state,
-        login: action.payload,
+        email: action.payload,
       };
 
     case SET_PASSWORD:
@@ -18,6 +20,11 @@ const reducer = (state = initialState, action) => {
         ...state,
         password: action.payload,
       };
+    case SET_USER:
+      return {
+        ...state,
+        user: action.payload
+      }
     default:
       return state;
   }

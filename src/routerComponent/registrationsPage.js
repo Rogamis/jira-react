@@ -1,58 +1,64 @@
-import React, { useState } from 'react'
-import "../App.css"
+import React from 'react';
+import { connect } from 'react-redux';
+import './style.css'
+import {setEmail, setPassword, setUser, registration} from "../redux/actions/registrationAction"
 
-function RegistrationsPage() {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [emailNotValid, setEmailNotValid] = useState(false);
-  const [passwordNotValid, setpasswordNotValid] = useState(false);
-  const [emailError, setemailError] = useState("Email cannot be empty");
-  const [passwordError, setPasswordError] = useState("Password cannot be empty");
-
-  const emailHandler = (e) => {
-    setEmail(e.target.value)
-    const regex = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
-    if (!regex.test(String(e.target.value).toLowerCase())) {
-      setemailError("Email not valid");
-    } else {
-      setemailError("");
-    }
-  }
-
-  const passwordHandler = (e) => {
-    setPassword(e.target.value)
-    if (e.target.value.length < 3 || e.target.value.length >8) {
-      setPasswordError("password must be at least 3 and no more than 8")
-        if(!e.target.value) {
-          setPasswordError("Password cannot be empty");
+function RegistrationForm(props) {
+      console.log(props)
+    const handleInputChange = (e) => {
+        const {id , value} = e.target;
+        if(id === "lastName"){
+            props.setUser(value);
         }
-    } 
-  } 
-
-  const validators = (e) => {
-    switch (e.target.name) {
-      case 'email':
-        setEmailNotValid(true)
-          break
-      case 'password':
-        setpasswordNotValid(true);
-          break
+        if(id === "email"){
+            props.setEmail(value);
+        }
+        if(id === "password"){
+            props.setPassword(value);
+        }
     }
-  }
-  return (
-    <div class="box">
-      <form>
-        <span class="text-center">LOGIN</span>
-        <div class="input-container">
-          {(emailNotValid && emailError) && <div style={{color: 'white'}}>{emailError}</div>}
-            <input onChange={e => emailHandler(e)} value={email} onBlur={e=> validators(e)} name='email' type='text' placeholder='Enter your email ...'/>
-          {(passwordNotValid && passwordError) && <div style={{color: 'white'}}>{passwordError}</div>}
-            <input onChange={e => passwordHandler(e)} value={password} onBlur={e => validators(e)} name='password' type='password' placeholder='Enter password ...'/>
+    
+    const handleSubmit  = () => {
+        props.registration()
+    }
+ 
+    return(
+        <div className="form">
+            <div className="form-body">
+                <div className="lastname">
+                    <label className="form__label" for="lastName"> User name </label>
+                    <input  type="text" name="user" id="lastName" value={props.user}  className="form__input" onChange = {(e) => handleInputChange(e)} placeholder="Nickname ..."/>
+                </div>
+                <div className="email">
+                    <label className="form__label" for="email">Email </label>
+                    <input  type="email" id="email" className="form__input" value={props.email} onChange = {(e) => handleInputChange(e)} placeholder="Email"/>
+                </div>
+                <div className="password">
+                    <label className="form__label" for="password">Password </label>
+                    <input className="form__input" type="password"  id="password" value={props.password} onChange = {(e) => handleInputChange(e)} placeholder="Password"/>
+                </div>
+            </div>
+            <div class="footer">
+                <button onClick={()=>handleSubmit()} type="submit" class="btn">Register</button>
+            </div>
         </div>
-        <button class="btn">Login</button>
-      </form>
-    </div>
-  );
+             
+    )       
 }
 
-export default RegistrationsPage
+const mapStateToProps = (state) => {
+  return {
+    email: state.auth.email,
+    user: state.auth.user,
+    password: state.auth.password,
+  };
+};
+
+const mapDispatchToProps = {
+  setEmail,
+  setPassword,
+  setUser,
+  registration
+};
+
+export default connect (mapStateToProps, mapDispatchToProps)(RegistrationForm)
