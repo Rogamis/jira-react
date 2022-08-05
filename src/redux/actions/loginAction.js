@@ -1,4 +1,5 @@
 import axiosInstance from "../../axios";
+import {setAccessToken, setRefreshToken} from '../actions/tokensAction'
 export const SET_EMAIL_LOGIN = "LOGIN::SET_EMAIL_LOGIN";
 export const SET_PASSWORD_LOGIN = "LOGIN::SET_PASSWORD_LOGIN";
 export const SET_TOKEN = "LOGIN::SET_TOKEN";
@@ -18,7 +19,7 @@ export const setToken = (token) => ({
     payload: token,
 });
 
-export const login = () => async (dispatch, getState) => {
+export const login = (callback) => async (dispatch, getState) => {
   try {
 
     const email = getState().login.email;
@@ -30,7 +31,10 @@ export const login = () => async (dispatch, getState) => {
     })
     console.log(answer.data)
     if (answer.data.access_token) {
-      dispatch(setToken(answer.data.access_token));
+      dispatch(setAccessToken(answer.data.access_token));
+      if(callback){
+        callback()
+      }
     }
   } catch (e) {
     console.log("login", e.response.data);

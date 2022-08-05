@@ -1,21 +1,15 @@
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import LoginPage from "./routerComponent/loginPage";
-import RegistrationsPage from "./routerComponent/registrationsPage";
-import "./App.css";
-import HomePage from "./routerComponent/homePage";
-import ErrorPage from "./routerComponent/errorPage";
+import React from "react";
+import { Provider } from "react-redux";
+import { store } from "./redux/store";
+import AppContainer from "./AppContainer";
 
-function App() {
+
+const App = () => {
   return (
-    <Router>
-      <Routes>
-        <Route path="/" element={<HomePage />} />
-        <Route path="/login" element={<LoginPage />} />
-        <Route path="/registration" element={<RegistrationsPage />} />
-        <Route path="*" element={<ErrorPage />} />
-      </Routes>
-    </Router>
+    <Provider store={store}>
+      <AppContainer />
+    </Provider>
   );
-}
+};
 
 export default App;
