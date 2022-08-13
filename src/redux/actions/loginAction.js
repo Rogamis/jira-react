@@ -31,7 +31,8 @@ export const login = (callback) => async (dispatch, getState) => {
     })
     console.log(answer.data)
     if (answer.data.access_token) {
-      dispatch(setAccessToken(answer.data.access_token));
+      dispatch(setAccessToken(answer.data.access_token))
+      dispatch(setRefreshToken(answer.data.refresh_token));
       if(callback){
         callback()
       }
@@ -40,3 +41,12 @@ export const login = (callback) => async (dispatch, getState) => {
     console.log("login", e.response.data);
   }
 };
+
+export const logOut = () => async (dispatch, getState) => {
+  try{
+    dispatch(setAccessToken(null))
+    dispatch(setRefreshToken(null))
+  } catch (e) {
+    console.log(logOut)
+  }
+}

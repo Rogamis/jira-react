@@ -8,7 +8,7 @@ const axiosInstance = axios.create({
 
 axiosInstance.interceptors.request.use(
   async (config) => {
-    const token = store.getState()?.token?.access_token; //если токен есть, он добавится в хэдер
+    const token = store.getState()?.token?.access_token; 
 
     if (!!token) {
       config.headers["Authorization"] = "Bearer " + token;

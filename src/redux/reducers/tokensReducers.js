@@ -6,7 +6,6 @@ const initialState = {
 };
 
 const tokenReducer = (state = initialState, action) => {
-    console.log("ASDASDASD",action)
   switch (action.type) {
 
     case SET_ACCESS_TOKEN:

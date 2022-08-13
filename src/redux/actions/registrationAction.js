@@ -8,6 +8,7 @@ export const registration = () => async (dispatch, getState) => {
         const email = getState().auth.email;
         const password = getState().auth.password;
         const user = getState().auth.user;
+        
         const answer = await axiosInstance.post("/registration", {
           email: email,
           password: password,
