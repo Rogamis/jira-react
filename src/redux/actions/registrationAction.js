@@ -1,7 +1,7 @@
 import axiosInstance from "../../axios";
-export const SET_USER = "AUTH::SET_LOGIN_WITHOUT_AVATAR";
-export const SET_PASSWORD = "AUTH::SET_PASSWORD";
-export const SET_EMAIL = "AUTH::SET_EMAIL"
+export const SET_USER = "REGIST::SET_LOGIN_WITHOUT_AVATAR";
+export const SET_PASSWORD = "REGIST::SET_PASSWORD";
+export const SET_EMAIL = "REGIST::SET_EMAIL";
 
 export const setUser = (user) => {
   return {
