@@ -6,7 +6,7 @@ const initialState = {
   password: "",
 };
 
-const reducer = (state = initialState, action) => {
+const registReducer = (state = initialState, action) => {
   switch (action.type) {
     case SET_EMAIL:
       return {
@@ -29,4 +29,4 @@ const reducer = (state = initialState, action) => {
   }
 };
 
-export default reducer;
+export default registReducer;

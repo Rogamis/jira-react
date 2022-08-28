@@ -48,9 +48,9 @@ function RegistrationForm(props) {
 
 const mapStateToProps = (state) => {
   return {
-    email: state.auth.email,
-    user: state.auth.user,
-    password: state.auth.password,
+    email: state.regist.email,
+    user: state.regist.user,
+    password: state.regist.password,
   };
 };
 

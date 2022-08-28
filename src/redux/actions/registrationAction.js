@@ -3,42 +3,42 @@ export const SET_USER = "AUTH::SET_LOGIN_WITHOUT_AVATAR";
 export const SET_PASSWORD = "AUTH::SET_PASSWORD";
 export const SET_EMAIL = "AUTH::SET_EMAIL"
 
-export const registration = () => async (dispatch, getState) => {
-    try {
-        const email = getState().auth.email;
-        const password = getState().auth.password;
-        const user = getState().auth.user;
-        
-        const answer = await axiosInstance.post("/registration", {
-          email: email,
-          password: password,
-          username: user,
-          role: "ADMIN",
-        });
-        console.log(answer.data) 
-    } catch(e){
-        console.log ("registration", e.response.data);
-        alert("This user already exists");
-    }
-}
-
-export const setUser = (data) => {
+export const setUser = (user) => {
   return {
     type: SET_USER,
-    payload: data,
+    payload: user,
   };
 };
 
-export const setPassword = (data) => {
+export const setPassword = (password) => {
   return {
     type: SET_PASSWORD,
-    payload: data,
+    payload: password,
   };
 };
 
-export const setEmail = (data) => {
+export const setEmail = (email) => {
   return {
     type: SET_EMAIL,
-    payload: data,
+    payload: email,
   };
+};
+
+export const registration = () => async (dispatch, getState) => {
+  try {
+    const email = getState().regist.email;
+    const password = getState().regist.password;
+    const user = getState().regist.user;
+
+    const answer = await axiosInstance.post("/registration", {
+      email: email,
+      password: password,
+      username: user,
+      role: "ADMIN",
+    });
+    console.log(answer.data);
+  } catch (e) {
+    console.log("registration", e.response.data);
+    alert("This user already exists");
+  }
 };

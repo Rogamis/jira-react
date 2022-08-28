@@ -39,7 +39,7 @@ function LoginPage(props) {
             <input value={props.password} id="password" type="mail" required="" onChange={(e) => {handleInputChange(e)}} />
             <label>Password</label>
           </div>
-        <button  onClick={()=> {handleSubmit()}} type="button" class="btn">
+        <button onClick={()=> {handleSubmit()}} type="button" class="btn">
           WELCOME
         </button>
       </form>
