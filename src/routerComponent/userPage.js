@@ -13,6 +13,7 @@ function UserPage(props) {
 
   return (
     <div>
+      <button onClick={props.logOut} className="btn">LogOut</button>
       <div className="user-content">
         <div className="user-block">
           <div className="user-info"></div>

@@ -1,9 +1,10 @@
-import { SET_EMAIL, SET_PASSWORD, SET_USER } from "../actions/registrationAction";
+import { SET_EMAIL, SET_PASSWORD, SET_USER, SET_AVATAR } from "../actions/registrationAction";
 
 const initialState = {
   email: "",
   user: "",
   password: "",
+  avatar: null
 };
 
 const registReducer = (state = initialState, action) => {
@@ -22,8 +23,13 @@ const registReducer = (state = initialState, action) => {
     case SET_USER:
       return {
         ...state,
-        user: action.payload
+        user: action.payload,
       }
+     case SET_AVATAR:
+      return {
+        ...state,
+        avatar: action.payload,
+      } 
     default:
       return state;
   }

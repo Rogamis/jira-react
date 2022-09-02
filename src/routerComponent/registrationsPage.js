@@ -1,9 +1,10 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import './style.css'
-import {setEmail, setPassword, setUser, registration} from "../redux/actions/registrationAction"
+import {setEmail, setPassword, setUser, setAvatar ,registration} from "../redux/actions/registrationAction"
 
 function RegistrationForm(props) {
+
       console.log(props)
     const handleInputChange = (e) => {
         const {id , value} = e.target;
@@ -21,7 +22,14 @@ function RegistrationForm(props) {
     const handleSubmit  = () => {
         props.registration()
     }
- 
+
+    const changeHandler = (event) => {
+    //   setSelectedFile(setAvatar);
+    //   setIsSelected(true);
+    console.log(event.target.files[0])
+    props.setAvatar(event.target.files[0]);
+    };
+
     return(
         <div className="form">
             <div className="form-body">
@@ -37,6 +45,7 @@ function RegistrationForm(props) {
                     <label className="form__label" for="password">Password </label>
                     <input className="form__input" type="password"  id="password" value={props.password} onChange = {(e) => handleInputChange(e)} placeholder="Password"/>
                 </div>
+                <input type="file" accept='image/*, .png, .jpg, .gif, .web, .webm,' onChange={changeHandler}></input>
             </div>
             <div class="footer">
                 <button onClick={()=>handleSubmit()} type="submit" class="btn">Register</button>
@@ -51,6 +60,7 @@ const mapStateToProps = (state) => {
     email: state.regist.email,
     user: state.regist.user,
     password: state.regist.password,
+    // avatar: state.regist.avatar
   };
 };
 
@@ -58,6 +68,7 @@ const mapDispatchToProps = {
   setEmail,
   setPassword,
   setUser,
+  setAvatar,
   registration
 };
 
