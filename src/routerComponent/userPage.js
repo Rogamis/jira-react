@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect } from 'react'
 import {fetchUserInfo} from "../redux/actions/userAction"
 import { logOut } from '../redux/actions/loginAction';
 import "../App.css"
@@ -12,11 +12,17 @@ function UserPage(props) {
   }, [])
 
   return (
-    <div className='user'>
-      <h1>Hello </h1>
-      <button onClick={props.logOut}>Log Out</button>
+    <div>
+      <div className="user-content">
+        <div className="user-block">
+          <div className="user-info"></div>
+          <div className="avatar"></div>
+        </div>
+      </div>
+      <div className="project-content"></div>
+      <div className="task-content"></div>
     </div>
-  )
+  );
 }
 
 const mapStateToProps = (state) => {

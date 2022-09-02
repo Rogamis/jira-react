@@ -37,8 +37,9 @@ export const registration = () => async (dispatch, getState) => {
       role: "ADMIN",
     });
     console.log(answer.data);
+    alert(`Welcome ${answer.data.username} to Jira pet project! Now you need to login: please follow to Login Page `)
   } catch (e) {
     console.log("registration", e.response.data);
-    alert("This user already exists");
+    alert("User with this email already exists.");
   }
 };

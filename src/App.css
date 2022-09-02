@@ -71,15 +71,7 @@ span{
 	cursor:pointer;
 	position:relative;
 }
-/* .btn:after{
-	content:"";
-	position:absolute;
-	background:rgba(0,0,0,0.50);
-	top:0;
-	right:0;
-	width:100%;
-	height:100%;
-} */
+
 .input-container input:focus ~ label,
 .input-container input:valid ~ label{
 	top:-12px;
@@ -93,3 +85,8 @@ span{
 	align-items: center;
 }
 
+.user-block {
+	width: 150px;
+	height: 200px;
+	color: #e74c3c;
+}

@@ -21,18 +21,19 @@ export const setToken = (token) => ({
 
 export const login = (callback) => async (dispatch, getState) => {
   try {
-
     const email = getState().login.email;
     const password = getState().login.password;
-
+    if (!email || !password) {
+      alert("invalid data");
+      return;
+    }
     const answer = await axiosInstance.post("/login", {
       email: email,
       password: password,
     })
-    console.log(answer.data)
     if (answer.data.access_token) {
       dispatch(setAccessToken(answer.data.access_token))
-      dispatch(setRefreshToken(answer.data.refresh_token));
+      dispatch(setRefreshToken(answer.data.refresh_token))
       if(callback){
         callback()
       }

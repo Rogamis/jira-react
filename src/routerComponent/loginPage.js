@@ -22,9 +22,14 @@ function LoginPage(props) {
         }
     }
 
-    const navigate = useNavigate();
+    const navigateLogin = useNavigate();
     const goUserPage = () => {
-        navigate("../user", {replace: true});
+        navigateLogin("../user", {replace: true});
+    };
+
+    const navigateRegist = useNavigate();
+    const goRegistrationPage = () => {
+        navigateRegist("../registration", {replace: true});
     };
 
   return (
@@ -42,6 +47,7 @@ function LoginPage(props) {
         <button onClick={()=> {handleSubmit()}} type="button" class="btn">
           WELCOME
         </button>
+        <button onClick={goRegistrationPage} type="button" className="btn">registration</button>
       </form>
     </div>
   );
