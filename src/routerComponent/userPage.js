@@ -112,7 +112,3 @@ const mapDispatchToProps = {
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(UserPage)
-
-// клик по проекту
-// страница задач
-// сделать проект ID и массив задач 
