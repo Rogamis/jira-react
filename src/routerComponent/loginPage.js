@@ -37,14 +37,14 @@ function LoginPage(props) {
       <form>
         <span class="text-center">Login</span>
           <div class="input-container">
-            <input value={props.email} id="email" type="text" required="" onChange={(e) => {handleInputChange(e)}}/>
+            <input value={props.email} id="email" type="email" required="" onChange={(e) => {handleInputChange(e)}}/>
             <label>Email</label>
           </div>
           <div class="input-container">
-            <input value={props.password} id="password" type="mail" required="" onChange={(e) => {handleInputChange(e)}} />
+            <input value={props.password} id="password" type="" required="" onChange={(e) => {handleInputChange(e)}} />
             <label>Password</label>
           </div>
-        <button onClick={()=> {handleSubmit()}} type="button" class="btn">
+        <button onClick={()=> {handleSubmit()}} type="button" className="btn">
           WELCOME
         </button>
         <button onClick={goRegistrationPage} type="button" className="btn">registration</button>

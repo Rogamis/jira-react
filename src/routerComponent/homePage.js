@@ -1,5 +1,6 @@
 import React from 'react'
 import { useNavigate } from 'react-router-dom';
+import "../App.css";
 
 function HomePage() {
 
@@ -17,10 +18,10 @@ function HomePage() {
     <div class="box">
       <form>
         <span class="text-center">WELCOME JIRA-PET-REACT</span>
-        <button type="button" class="btn" onClick={goLoginPage}>
+        <button type="button" className="btn" onClick={goLoginPage}>
           login
         </button>
-        <button type="button" class="btn" onClick={goRegistrationPage}>
+        <button type="button" className="btn" onClick={goRegistrationPage}>
           Registration
         </button>
       </form>

@@ -10,13 +10,13 @@ body{
 	font-family: 'Noto Sans', sans-serif;
 }
 span{
-	color: #fff;
-	opacity: 0.33;
+	color: rgb(0, 0, 0);
+	opacity: 0.60;
 }
 .text-center{
-	color:#fff;	
+	color:rgb(0, 0, 0);	
 	text-transform:uppercase;
-    font-size: 23px;
+    font-size: 22px;
     margin: -50px 0 80px 0;
     display: block;
     text-align: center;
@@ -26,7 +26,7 @@ span{
 	left:50%;
 	top:50%;
 	transform: translate(-50%,-50%);
-    background-color: rgba(0, 0, 0, 0.89);
+  background-color: rgb(255, 255, 255);
 	border-radius:3px;
 	padding:70px 100px;
 }
@@ -39,8 +39,8 @@ span{
 	top:0px;
 	left:0px;
 	font-size:16px;
-	color:#fff;	
-    pointer-event:none;
+	color:rgb(0, 0, 0);	
+  pointer-events: none;
 	transition: all 0.5s ease-in-out;
 }
 .input-container input{ 
@@ -50,7 +50,7 @@ span{
   width:100%;
   padding:8px 0 5px 0;
   font-size:16px;
-  color:#fff;
+  color:rgb(0, 0, 0);
 }
 .input-container input:focus{ 
  border:none;	
@@ -190,11 +190,33 @@ body{
 	outline: none;
   border: 5px;
   color: #fff;
-	padding:10px 20px;
+	padding: 10px 20px;
 	text-transform:uppercase;
-	margin-top:40px;
-	margin: 15px;
+	margin-top:15px;
+  margin-bottom: 20px;
 	border-radius:5px;
 	cursor:pointer;
 	position:relative;
 }
+
+.box-project{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 600;
+  height: 300px;
+  background-color: #e0e0e0;
+  border-radius: 25px;
+  box-shadow:#353c4e;
+}
+
+.input-project {
+  width: 50%;
+  padding: 12px 20px;
+  margin: 8px ;
+  box-sizing: border-box;
+  border: 1px solid #555;
+  outline: none;
+}
+

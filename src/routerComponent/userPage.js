@@ -1,34 +1,36 @@
 import React, { useEffect } from 'react'
 import {fetchUserInfo} from "../redux/actions/userAction"
 import { logOut } from '../redux/actions/loginAction';
-import "../App.css"
 import { connect } from "react-redux";
+import { fetchProject, setProjects, deleteProject } from '../redux/actions/projectAction';
+import "bootstrap/dist/css/bootstrap.min.css";
+import "../App.css";
+import CreateNewProjectModal from './components/createNewProjectModal';
+import { useNavigate } from 'react-router';
 
 function UserPage(props) {
-  console.log("props", props);
+   console.log("props 123123", props);
 
   useEffect(() => {
     props.fetchUserInfo()
+    props.fetchProject();
   }, [])
+
+    const navigate = useNavigate();
+    const navigateToProject = () => {
+      navigate(`/project`)
+    }
+  
 
   return (
     <body>
-      <div class="wrapper">
-        <div class="left">
-          <img
-            className="photo"
-            alt="user"
-            width="100"
-            src={
-              "https://random.imagecdn.app/500/500"
-            }
-          ></img>
+      <div className="wrapper">
+        <div className="left">
+          <img className="photo" alt="user" width="100" src={"https://random.imagecdn.app/500/500"}></img>
           <h4>Welcome {props.username}</h4>
           <p>Role: {props.userrole}</p>
-          <button className="btn" onClick={props.logOut}>
-            logOut
-          </button>
-        </div>
+          <button className="btn" onClick={props.logOut}>logOut </button>
+      </div>
         <div class="right">
           <div class="info">
             <h3>Information</h3>
@@ -40,24 +42,34 @@ function UserPage(props) {
               </div>
             </div>
           </div>
-
           <div class="projects">
             <h3>Projects you have created</h3>
             <div class="projects_data">
               <div class="data">
-                <button className="btn-project">Create new project</button>
-                <h4>Recent</h4>
-                <p>Lorem ipsum dolor sit amet.</p>
-                <h4>Recent</h4>
-                <p>Lorem ipsum dolor sit amet.</p>
+                <CreateNewProjectModal />
+                <div>
               </div>
-              <div class="data">
-                <h4>My project</h4>
-                <p>dolor sit amet.</p>
+              {props.projects.map(project => {
+                return (
+                  <div>
+                    <button className="btn" onclick={navigateToProject}>
+                      <h4>{project.title}</h4>
+                      <p>{project.description}</p>
+                    </button>
+                    <button
+                      className="btn"
+                      onClick={() => {
+                        props.deleteProject(project.id);
+                      }}
+                    >
+                      Deleted project
+                    </button>
+                  </div>
+                );
+              })}
               </div>
             </div>
           </div>
-
           <div class="projects">
             <h3>Invited projects </h3>
             <div class="projects_data">
@@ -86,12 +98,21 @@ const mapStateToProps = (state) => {
     userid: state.user.userid,
     userrole: state.user.userrole,
     email: state.user.email,
-    avatar: state.user.avatar
+    avatar: state.user.avatar,
+
+    projects: state.projects.projects
   }
 }
 const mapDispatchToProps = {
   fetchUserInfo,
+  fetchProject,
+  setProjects,
+  deleteProject,
   logOut,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(UserPage)
+
+// клик по проекту
+// страница задач
+// сделать проект ID и массив задач 

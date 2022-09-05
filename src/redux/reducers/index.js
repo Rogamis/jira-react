@@ -5,6 +5,7 @@ import tokenReducer from "./tokensReducers";
 import userReducer from "./userReducer";
 import storage from "redux-persist/lib/storage";
 import registReducer from "./registrationReducer";
+import projectsReducer from "./projectsReducer";
 
 const persistConfig = {
   key: "root",
@@ -17,6 +18,7 @@ const rootReducer = combineReducers({
   login: loginReducer,
   token: tokenReducer,
   user: userReducer,
+  projects: projectsReducer,
 });
 
 export default persistReducer(persistConfig, rootReducer)
