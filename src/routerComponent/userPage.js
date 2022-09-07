@@ -7,6 +7,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "../App.css";
 import CreateNewProjectModal from './components/createNewProjectModal';
 import { useNavigate } from 'react-router';
+import { setTitleProject, setDescription, setProjectId } from "../redux/actions/selectedProject"
 
 function UserPage(props) {
    console.log("props 123123", props);
@@ -17,7 +18,11 @@ function UserPage(props) {
   }, [])
 
     const navigate = useNavigate();
-    const navigateToProject = () => {
+    const navigateToProject = (project) => {
+      console.log(project)
+      props.setTitleProject(project.title);
+      props.setDescription(project.description);
+      props.setProjectId(project.id)
       navigate(`/project`)
     }
   
@@ -51,8 +56,10 @@ function UserPage(props) {
               </div>
               {props.projects.map(project => {
                 return (
-                  <div>
-                    <button className="btn" onclick={navigateToProject}>
+                  <div key={project.id}>
+                    <button className="btn" onClick={() => {
+                      navigateToProject(project)
+                    }}>
                       <h4>{project.title}</h4>
                       <p>{project.description}</p>
                     </button>
@@ -100,7 +107,7 @@ const mapStateToProps = (state) => {
     email: state.user.email,
     avatar: state.user.avatar,
 
-    projects: state.projects.projects
+    projects: state.projects.projects,
   }
 }
 const mapDispatchToProps = {
@@ -108,6 +115,9 @@ const mapDispatchToProps = {
   fetchProject,
   setProjects,
   deleteProject,
+  setDescription,
+  setProjectId,
+  setTitleProject,
   logOut,
 };
 

@@ -19,16 +19,6 @@ const PrivateRoute = (props) => {
   return props.children
 }
 
-const UserProjectPage = (props) => {
-  const access_token = useSelector((state) => state.token.access_token);
-
-  if (!access_token) {
-    return <Navigate to="/project" />;
-  }
-
-  return props.children;
-};
-
 function App() {
   return (
     <Router>
@@ -37,7 +27,7 @@ function App() {
         <Route path="/login" element={<LoginPage />} />
         <Route path="/registration" element={<RegistrationsPage />} />
         <Route path="/user" element={ <PrivateRoute> <UserPage /> </PrivateRoute> } />
-        <Route path="/project" element={<UserProjectPage><ProjectPage /></UserProjectPage>} />
+        <Route path="/project" element={<ProjectPage />} />
         <Route path="*" element={<ErrorPage />} />
       </Routes>
     </Router>

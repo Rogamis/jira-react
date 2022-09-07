@@ -6,11 +6,12 @@ import userReducer from "./userReducer";
 import storage from "redux-persist/lib/storage";
 import registReducer from "./registrationReducer";
 import projectsReducer from "./projectsReducer";
+import selectedProjectReducer from "./selectedProject";
 
 const persistConfig = {
   key: "root",
   storage: storage,
-  whitelist: ["token"],
+  whitelist: ["token", "selectedProject"],
 };
 
 const rootReducer = combineReducers({
@@ -19,6 +20,7 @@ const rootReducer = combineReducers({
   token: tokenReducer,
   user: userReducer,
   projects: projectsReducer,
+  selectedProject: selectedProjectReducer,
 });
 
 export default persistReducer(persistConfig, rootReducer)
