@@ -3,11 +3,11 @@ import {fetchUserInfo} from "../redux/actions/userAction"
 import { logOut } from '../redux/actions/loginAction';
 import { connect } from "react-redux";
 import { fetchProject, setProjects, deleteProject } from '../redux/actions/projectAction';
-import "bootstrap/dist/css/bootstrap.min.css";
-import "../App.css";
 import CreateNewProjectModal from './components/createNewProjectModal';
 import { useNavigate } from 'react-router';
 import { setTitleProject, setDescription, setProjectId } from "../redux/actions/selectedProject"
+import "bootstrap/dist/css/bootstrap.min.css";
+import "../App.css";
 
 function UserPage(props) {
    console.log("props 123123", props);
@@ -109,6 +109,7 @@ const mapStateToProps = (state) => {
     projects: state.projects.projects,
   }
 }
+
 const mapDispatchToProps = {
   fetchUserInfo,
   fetchProject,

@@ -1,9 +1,12 @@
+import { Box, CardContent, Typography } from '@mui/material';
 import React, { useEffect } from 'react'
+import { Button, Card } from 'react-bootstrap';
 import { connect } from 'react-redux'
 import { fetchTasks, deleteTask } from "../../redux/actions/selectedProject"
 import CreateNewTaskModal from "./createNewTask";
+import AppBarTasks from './navBar';
 
-export const ProjectPage = (props) => {
+const ProjectPage = (props) => {
 
   useEffect(() => {
     props.fetchTasks()
@@ -11,19 +14,28 @@ export const ProjectPage = (props) => {
 
   return (
     <div>
-      <p>{props.title}</p>
-      <p>{props.description}</p>
+      <AppBarTasks />
+      <Box display="flex" justifyContent="center" alignItems="center" minHeight="10vh" flexDirection='column'>
+        <Typography gutterBottom variant="h4">Project: {props.title}</Typography>
+        <Typography gutterBottom variant="body1" >Description: {props.description}</Typography>
       <CreateNewTaskModal />
+      </Box>
       {props.tasks.map(task => {
         return (
-          <div key={task.id}>
-            <p>{task.title}</p>
-            <p>{task.description}</p>
-            <button className="btn" onClick={() => {
-              props.deleteTask(task.id)
-            }}>delete task</button>
-          </div>
-        )
+          <Box display="flex" justifyContent="center" alignItems="start" minHeight="20vh" flexDirection='column'>
+            <Card key={task.id} variant="outlined" sx={{ minWidth: 275 }}>
+              <CardContent>
+                    <Typography gutterBottom variant="h4">{task.title}</Typography>
+                    <Typography gutterBottom variant="body1">{task.description}</Typography>
+                    <Button variant="outlined"
+                      onClick={() => {
+                        props.deleteTask(task.id);
+                      }}> delete task
+                    </Button>
+              </CardContent>
+            </Card>
+          </Box>
+        );
       })}
     </div>
   )
