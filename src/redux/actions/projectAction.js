@@ -6,7 +6,6 @@ export const setProjects = (projects) => ({
     payload: projects
 })
 
-
 export const fetchProject = () => async (dispatch, getState) => {
     try {
         const answer = await axiosInstance.get("/projects");

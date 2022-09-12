@@ -1,4 +1,4 @@
-import {SET_DESCRIPITON, SET_TITLE_PROJECT, SET_PROJECTS, SET_PROJECT_ID} from '../actions/projectAction'
+import { SET_PROJECTS } from '../actions/projectAction'
 
 const initialState = {
     projects: []

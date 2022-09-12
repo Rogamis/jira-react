@@ -62,3 +62,20 @@ export const deleteTask = (id) => async (dispatch, getState) => {
     console.log("delete task", e);
   }
 };
+
+export const editTask = (id, title, description, onSuccess, onError) => async (dispatch, getState) => {
+    try {
+        const projectId = getState().selectedProject.id;
+        console.log("props.id", projectId);
+        const data = await axiosInstance.put(`projects/${projectId}/tasks/${id}`, {
+            title: title,
+            description: description,
+        })
+        console.log('edit Task', data.data)
+        onSuccess()
+        dispatch(fetchTasks())
+    } catch (e) {
+        console.log('edit Task Error', e)
+        onError()
+    }
+}

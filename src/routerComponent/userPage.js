@@ -30,7 +30,7 @@ function UserPage(props) {
     <body>
       <div className="wrapper">
         <div className="left">
-          <img className="photo" alt="user" width="100" src={"https://random.imagecdn.app/700/700"}></img>
+          <img className="img" alt="user" width="100" src={"https://picsum.photos/500/500"}></img>
           <h4>Welcome {props.username}</h4>
           <p>Role: {props.userrole}</p>
           <button className="btn" onClick={props.logOut}>logOut </button>
