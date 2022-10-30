@@ -76,6 +76,6 @@ export const editTask = (id, title, description, onSuccess, onError) => async (d
         dispatch(fetchTasks())
     } catch (e) {
         console.log('edit Task Error', e)
-        onError()
+        onError("Some error occurred") 
     }
 }
